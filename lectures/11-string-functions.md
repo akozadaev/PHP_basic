@@ -12,7 +12,7 @@
 
 - `strpos()`, `stripos()` - позиция подстроки
 - `str_replace()`, `str_ireplace()` - замена
-- `substr()` - подстрока (в PHP 8.0+ `mb_substr()` для многобайтовых)
+- `substr()` - подстрока в байтах; для многобайтовых строк используйте `mb_substr()` из расширения mbstring
 
 ### Работа с регистром
 
@@ -23,6 +23,21 @@
 - `explode()`, `implode()` - разбиение и объединение
 - `trim()`, `ltrim()`, `rtrim()` - удаление пробелов
 - `sprintf()`, `printf()` - форматирование
+
+### Поиск в строках средствами PHP 8
+
+```php
+$name = 'lesson-php8.php';
+var_dump(str_contains($name, 'php8')); // true
+var_dump(str_starts_with($name, 'lesson-')); // true
+var_dump(str_ends_with($name, '.php')); // true
+var_dump(str_contains($name, 'PHP8')); // false
+var_dump(str_contains($name, '')); // true
+```
+
+Все три функции возвращают `bool`, учитывают регистр и считают пустую подстроку найденной. Если пустой поисковый запрос недопустим, проверяйте его отдельно. Расширение файла в этом примере иллюстрирует поиск и само по себе не подтверждает безопасность загружаемого файла.
+
+См. [лекцию 21](21-php8-features.md) и [исполняемый пример](../examples/21-php8-features/basic.php).
 
 ---
 

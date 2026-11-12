@@ -28,6 +28,26 @@ function name(параметры): returnType { тело }
 
 - `...$args` - произвольное количество аргументов
 
+### Дополнения PHP 8: throw, catch и запятая в параметрах
+
+```php
+function requireName(
+    array $data,
+): string {
+    return $data['name'] ?? throw new InvalidArgumentException('Нет имени');
+}
+
+try {
+    requireName([]);
+} catch (InvalidArgumentException) {
+    echo 'Имя обязательно', PHP_EOL;
+}
+```
+
+`throw` используется как выражение. `catch` без переменной подходит, если нужны только тип исключения и факт ошибки. Оператор `??` срабатывает для отсутствующего ключа или `null`, но пропускает пустую строку. Завершающая запятая в объявлении параметров разрешена с PHP 8.0.
+
+Атрибуты методов, возвращаемый `static` и другие возможности разобраны в [лекции 21](21-php8-features.md) и [полном примере](../examples/21-php8-features/basic.php).
+
 ---
 
 ## 2. Синтаксис и основные концепции
